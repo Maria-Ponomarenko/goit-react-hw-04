@@ -5,27 +5,16 @@ export default function ImageCard({
   urlSmall,
   urlRegular,
   onOpenModal,
-  dataModal,
+  onDataForModal,
 }) {
-  const data = {
-    src: urlRegular,
-    alt: altDescription,
-  };
-
-  function openModal(data) {
-    dataModal(data);
+  function openModal() {
+    onDataForModal({ src: urlRegular, alt: altDescription });
     onOpenModal();
   }
 
   return (
     <div className={css.imageBox}>
-      <img
-        src={urlSmall}
-        alt={altDescription}
-        onClick={() => {
-          openModal(data);
-        }}
-      />
+      <img src={urlSmall} alt={altDescription} onClick={openModal} />
     </div>
   );
 }

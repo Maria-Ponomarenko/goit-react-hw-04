@@ -47,8 +47,10 @@ export default function App() {
     setPage(page + 1);
   }
 
-  function dataModal(data) {
-    setDataForModal(data);
+  function handleDataForModal(data) {
+    setDataForModal((prev) => {
+      return { ...prev, data };
+    });
   }
 
   function openModal() {
@@ -65,7 +67,7 @@ export default function App() {
         <ImageGallery
           images={images}
           onOpenModal={openModal}
-          dataModal={dataModal}
+          onDataForModal={handleDataForModal}
         />
       )}
       {loading && <Loader />}

@@ -1,7 +1,7 @@
 import css from "../ImageGallery/ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 
-export default function ImageGallery({ images, onOpenModal, dataModal }) {
+export default function ImageGallery({ images, onOpenModal, onDataForModal }) {
   return (
     <ul className={css.list}>
       {images.map(({ id, alt_description, urls: { regular, small } }) => {
@@ -12,7 +12,7 @@ export default function ImageGallery({ images, onOpenModal, dataModal }) {
               urlSmall={small}
               urlRegular={regular}
               onOpenModal={onOpenModal}
-              dataModal={dataModal}
+              onDataForModal={onDataForModal}
             />
           </li>
         );
