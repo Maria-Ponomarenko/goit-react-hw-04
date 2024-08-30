@@ -50,9 +50,7 @@ export default function App() {
   }
 
   function handleDataForModal(data) {
-    setDataForModal((prev) => {
-      return { ...prev, data };
-    });
+    setDataForModal(data);
   }
 
   function openModal() {
