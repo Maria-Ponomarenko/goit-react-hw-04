@@ -15,6 +15,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
+  const [showBtn, setShowBtn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dataForModal, setDataForModal] = useState({});
 
@@ -28,6 +29,7 @@ export default function App() {
         const res = await fetchImages(query, page);
         setImages((prev) => [...prev, ...res.images]);
         setTotalPages(res.totalPages);
+        setShowBtn(totalPages && totalPages !== page);
       } catch (error) {
         setError(true);
       } finally {
@@ -72,10 +74,9 @@ export default function App() {
       )}
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      {images.length > 0 && !loading && (
+      {images.length > 0 && showBtn && !loading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-      {page >= totalPages && <p>END OF COLLECTION!</p>}
       <ImageModal
         dataForModal={dataForModal}
         onCloseModal={closeModal}
